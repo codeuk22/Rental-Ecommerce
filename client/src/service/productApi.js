@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL='http://localhost:5000/api/';
+// const URL='http://localhost:5000/api/';
+const URL='https://ecomm-api-1vp8.onrender.com/api/';
 
 //product api
 

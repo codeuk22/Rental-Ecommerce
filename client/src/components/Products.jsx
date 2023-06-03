@@ -71,7 +71,10 @@ const Products = ({cat,filters,sort}) => {
 }
   const getProducts= async ()=>{
     try{
-      const res=await axios.get(cat ? `http://localhost:5000/api/products?category=${cat}` : "http://localhost:5000/api/products");
+      // const res=await axios.get(cat ? `http://localhost:5000/api/products?category=${cat}` : "http://localhost:5000/api/products");
+
+      const res=await axios.get(cat ? `https://ecomm-api-1vp8.onrender.com/api/products?category=${cat}` : "https://ecomm-api-1vp8.onrender.com/api/products");
+
       console.log(res)
       setProducts(res.data);
     }catch(e){

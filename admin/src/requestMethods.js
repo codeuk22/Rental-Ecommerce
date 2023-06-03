@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/";
+// const BASE_URL = "http://localhost:5000/api/";
+const BASE_URL = "https://ecomm-api-1vp8.onrender.com/api/";
+
 // const __currentUser = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser;
 // const TOKEN = __currentUser ? __currentUser.accessToken : '';
 // const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;

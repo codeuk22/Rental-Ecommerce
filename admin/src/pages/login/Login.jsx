@@ -118,12 +118,15 @@ const Login = () => {
 
     try {
       const res = await publicRequest.post("/auth/admin/login", body, config);
-      const { username: resUsername, isAdmin, _id } = res.data;
+      // const { username: resUsername, isAdmin, _id } = res.data;
 
-      if (resUsername === username && isAdmin) {
-        localStorage.setItem("user", JSON.stringify(_id));
+      // if (resUsername === username && isAdmin)
+      if (res)
+      
+      {
+        localStorage.setItem("user", JSON.stringify(res.data._id));
         // alert(`Login successful`);
-        navigate("/");
+        navigate("/home");
         // showNotificationDelete()
         window.location.reload();
 

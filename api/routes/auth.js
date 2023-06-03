@@ -71,14 +71,33 @@ router.post("/register", async (req,res)=>{
 router.post("/admin/login",async (req,res)=>{
 
     const{username,password}=req.body;
+    console.log("yes i am hitted")
 
     if(!username || !password) return res.status(400).send("Plz add email or password")
     try{
 
+        console.log("response is" ,req.body )
+        
         const check = await User.findOne({username:username})
-        const hashedPassword=CryptoJS.AES.decrypt(check.password,process.env.PASS_SEC);
-        const Originalpassword=hashedPassword.toString(CryptoJS.enc.Utf8);
-        if(check && password===Originalpassword && check.isAdmin)  {
+
+        const Originalpassword =await bcrypt.compare(
+            req.body.password , check.password
+        )
+        if(!Originalpassword)
+        return res.status(401).send({message:"Invalid Email or Password!!"});
+
+
+
+
+
+                // const salt =await bcrypt.genSalt(Number(process.env.SALT))
+            // const hashPassword= await bcrypt.hash(req.body.password, salt);
+
+
+                // const hashedPassword=CryptoJS.AES.decrypt(check.password,process.env.PASS_SEC);
+                // const Originalpassword=hashedPassword.toString(CryptoJS.enc.Utf8);
+        if(check && Originalpassword && check.isAdmin)  {
+            console.log("admin checked")
             res.status(200).json(check)
         }
         else res.status(400).send("invalid username or password");

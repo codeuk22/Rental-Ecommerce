@@ -10,7 +10,7 @@ import { publicRequest, userRequest } from '../../requestMethods';
 function Product() {
 
     const location = useLocation();
-    const productId = location.pathname.split("/")[2];
+    const productId = location.pathname.split("/home")[2];
     const [pStats, setPStats] = useState([]);
 
     const pro = useSelector((state) => state.product.products.find((product) => product._id === productId))

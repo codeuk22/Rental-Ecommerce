@@ -35,7 +35,7 @@ function Topbar() {
     }
     const handleClick = () => {
         localStorage.clear();
-        navigate('/login')
+        navigate('/')
         window.location.reload();
         getSetuser();
     }
@@ -63,7 +63,7 @@ function Topbar() {
                         {/* <Settings/> */}
                     </div>
                     {!data? <>
-                    <Link to="/login">
+                    <Link to="/">
                         <Login/>
                     </Link>
                     </>:

@@ -152,23 +152,13 @@ cursor: pointer;
 `
 
 const Cart = () => {
-    const cart = useSelector(state => state.cart);
-    const [stripeToken, setStripeToken] = useState(null);
-    const history = useNavigate();
-    const [quantity, setQuantity] = useState(cart.products.quantity);
 
     const [productList, setProductList] = useState();
-    const [user,setUser]=useState();
 
-    // const [totalPrice, setTotalPrice]=useState(0);
     let a = 0;
     let totalPrice = 0;
 
-    const onToken = (token) => {
-        setStripeToken(token);
-    };
-
-    const userId = JSON.parse(localStorage.getItem("user"))._id
+    const userId = JSON.parse(localStorage.getItem("user")).username;
 
     // const handleQuantity = (type) => {
     //     if (type === "dec") {
@@ -181,14 +171,10 @@ const Cart = () => {
 
     useEffect(() => {
         getUserProductsList();
-
     }, [])
 
     const getUserProductsList = async () => {
         const list = await getUserProducts(userId);
-        const res=await publicRequest.get(`/users/find/${userId}`);
-        setUser(res.data.username);
-        // console.log("response ",res.data);
         setProductList(list);
     }
 
@@ -214,8 +200,8 @@ const Cart = () => {
 
     return (
         <Container>
-            <Navbar length={productList?.length} />
             <Announcement />
+            <Navbar length={productList?.length} />
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
@@ -227,18 +213,6 @@ const Cart = () => {
                         <TopText>Shopping Bag ({productList?.length})</TopText>
                         {/* <TopText>Your WishList (0)</TopText> */}
                     </TopTexts>
-                    {/* <StripeCheckout
-                        name="rks"
-                        img="https://avatars.githubusercontent.com/u/1486366>v=4"
-                        billingAddress
-                        shippingAddress
-                        description={`Your total is ${cart.total}`}
-                        amount={cart.total * 100}
-                        token={onToken}
-                        stripeKey={KEY}
-                    >
-                        <Button>CHECKOUT NOW</Button>
-                    </StripeCheckout> */}
                 </Top>
                 <Bottom>
                     <Info>
@@ -254,40 +228,7 @@ const Cart = () => {
                             ))
                         }
                     </Info>
-                    <Summary totalPrice={a} productList={productList} user={user}/>
-
-
-                    {/* <Summary> */}
-                    {/* <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                        <SummaryItem>
-                            <SummaryItemText>SubTotal</SummaryItemText>
-                            <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Estimated Shipping</SummaryItemText>
-                            <SummaryItemPrice>₹ 150.90</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Shipping Discount</SummaryItemText>
-                            <SummaryItemPrice>- ₹ 150.90</SummaryItemPrice>
-                        </SummaryItem>
-                        <SummaryItem type="total">
-                            <SummaryItemText >Total</SummaryItemText>
-                            <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
-                        </SummaryItem>
-                        <StripeCheckout
-                            name="rks"
-                            img="https://avatars.githubusercontent.com/u/1486366>v=4"
-                            billingAddress
-                            shippingAddress
-                            description={`Your total is ${cart.total}`}
-                            amount={cart.total * 100}
-                            token={onToken}
-                            stripeKey={KEY}
-                        >
-                            <Button>CHECKOUT NOW</Button>
-                        </StripeCheckout> */}
-                    {/* </Summary> */}
+                    <Summary totalPrice={a} productList={productList} />
                 </Bottom>
             </Wrapper>
             <Footer />

@@ -83,7 +83,6 @@ const ProductCart = ({ product, totalPrice, getUserProductsList }) => {
 
     const deleteProduct = async () => {
         try {
-            console.log("enter")
             const res = await publicRequest.delete(`carts/${product.productId}`)
             if (res) {
                 alert("An item has been deleted")
@@ -106,6 +105,7 @@ const ProductCart = ({ product, totalPrice, getUserProductsList }) => {
                     <ProductId><b>ID :</b> {product.productId}</ProductId>
                     <ProductName><b>Price Per Item :</b> ₹ {pro?.price}</ProductName>
                     <ProductColor color={pro?.color} />
+                    <ProductName><b>Categories :</b> {pro?.categories}</ProductName>
                     <ProductSize><b>Size :</b> {product?.size}</ProductSize>
                 </Details>
             </ProductDetail>

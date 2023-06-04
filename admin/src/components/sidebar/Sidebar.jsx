@@ -13,11 +13,16 @@ import {
     ChatBubbleOutline,
     WorkOutline,
     Report,
+    PersonAdd,
+    Home,
+    LocalMall
 } from "@material-ui/icons";
 import { BrowserRouter, Link } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
+
+        
         <>
             <div className="sidebar">
                 <div className="sidebarWrapper">
@@ -26,7 +31,7 @@ const Sidebar = () => {
                         <ul className="sidebarList">
                             <Link to="/home" className="link">
                                 <li className="sidebarListItem active">
-                                    <LineStyle className="sidebarIcon" />
+                                    <Home className="sidebarIcon" />
                                     Home
                                 </li>
                             </Link>
@@ -48,23 +53,23 @@ const Sidebar = () => {
                     <div className="sidebarMenu">
                         <h3 className="sidebarTitle">Quick Menu</h3>
                         <ul className="sidebarList">
-                            <Link to="/users" className="link">
+                            <Link to="/home/users" className="link">
                                 <li className="sidebarListItem">
                                     <PermIdentity className="sidebarIcon" />
                                     Users
                                 </li>
                             </Link>
-                            <Link to="/products" className="link">
+                            <Link to="/home/products" className="link">
                                 <li className="sidebarListItem">
                                     <Storefront className="sidebarIcon" />
                                     Products
                                 </li>
                             </Link>
-                            <Link to="/transactions" className='link'>
-                            <li className="sidebarListItem">
-                                <AttachMoney className="sidebarIcon" />
-                                Transactions
-                            </li>
+                            <Link to="/home/transactions" className='link'>
+                                <li className="sidebarListItem">
+                                    <AttachMoney className="sidebarIcon" />
+                                    Transactions
+                                </li>
                             </Link>
                             {/* <li className="sidebarListItem">
                                 <BarChart className="sidebarIcon" />
@@ -72,24 +77,28 @@ const Sidebar = () => {
                             </li> */}
                         </ul>
                     </div>
-                    {/* <div className="sidebarMenu">
-                        <h3 className="sidebarTitle">Notifications</h3>
+                    <div className="sidebarMenu">
+                        <h3 className="sidebarTitle">Quick Links</h3>
                         <ul className="sidebarList">
+                            <Link to="/home/newUser" className='link'>
+                                <li className="sidebarListItem">
+                                    <PersonAdd className="sidebarIcon" />
+                                    Add New User
+                                </li>
+                            </Link>
+                            <Link to="/home/newproduct" className='link'>
                             <li className="sidebarListItem">
-                                <MailOutline className="sidebarIcon" />
-                                Mail
+                                <LocalMall className="sidebarIcon" />
+                                Add New Product
                             </li>
-                            <li className="sidebarListItem">
-                                <DynamicFeed className="sidebarIcon" />
-                                Feedback
-                            </li>
-                            <li className="sidebarListItem">
+                            </Link>
+                            {/* <li className="sidebarListItem">
                                 <ChatBubbleOutline className="sidebarIcon" />
-                                Messages
-                            </li>
+                                New Product Added
+                            </li> */}
                         </ul>
                     </div>
-                    <div className="sidebarMenu">
+                    {/* <div className="sidebarMenu">
                         <h3 className="sidebarTitle">Staff</h3>
                         <ul className="sidebarList">
                             <li className="sidebarListItem">

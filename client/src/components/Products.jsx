@@ -71,11 +71,10 @@ const Products = ({cat,filters,sort}) => {
 }
   const getProducts= async ()=>{
     try{
-      // const res=await axios.get(cat ? `http://localhost:5000/api/products?category=${cat}` : "http://localhost:5000/api/products");
+      const res=await axios.get(cat ? `http://localhost:5000/api/products?category=${cat}` : "http://localhost:5000/api/products");
 
-      const res=await axios.get(cat ? `https://ecomm-api-1vp8.onrender.com/api/products?category=${cat}` : "https://ecomm-api-1vp8.onrender.com/api/products");
+      // const res=await axios.get(cat ? `https://ecomm-api-1vp8.onrender.com/api/products?category=${cat}` : "https://ecomm-api-1vp8.onrender.com/api/products");
 
-      console.log(res)
       setProducts(res.data);
     }catch(e){
       console.log(e)
@@ -109,19 +108,13 @@ const Products = ({cat,filters,sort}) => {
 
   const handleSearch=()=>{
     let arr=[];
-    console.log(products)
     for(let i=0;i<products?.length;i++){
       if(products[i].title==searchText){
         arr.push(products[i]);
       }
     }
-    // console.log("funs is caleeed")
     setProducts(arr);
-    console.log("arr is ",arr);
   }
-
-
-  console.log(filteredProducts);
 
   return (
     // <Container>

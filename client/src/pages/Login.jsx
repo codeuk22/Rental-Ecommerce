@@ -103,11 +103,8 @@ const Login = () => {
       await publicRequest.post("/auth/login", body, config).then((res) => {
         console.log("response ", res.data.email)
         const data = localStorage.setItem("user", JSON.stringify(res.data))
-        //  setUser(res.data.email)
         if (res.data.username === username) {
-          // setUser(res.data)
           alert(`Login successfully`);
-          // console.log("user is ", user)
           navigate("/");
         } else {
           alert("Invalid Username or Password")

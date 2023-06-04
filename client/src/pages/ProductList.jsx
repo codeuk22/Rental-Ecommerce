@@ -21,20 +21,20 @@ justify-content: space-between;
 
 const Filter = styled.div`
 margin: 20px;
-${mobile({margin:"0px 20px",display:"flex",flexDirection:"column"})}
+${mobile({ margin: "0px 20px", display: "flex", flexDirection: "column" })}
 `
 
 const FilterText = styled.span`
 font-size: 20px;
 font-weight: 600;
 margin-right: 20px;
-${mobile({marginRight:"0px"})}
+${mobile({ marginRight: "0px" })}
 `
 
 const Select = styled.select`
 padding: 10px;
 margin-right: 20px;
-${mobile({margin:"10px 0px"})}
+${mobile({ margin: "10px 0px" })}
 `
 const Option = styled.option``
 
@@ -43,19 +43,19 @@ const Option = styled.option``
 
 
 const ProductList = () => {
-    const location=useLocation();
-    const cat=location.pathname.split("/")[2];
-    console.log("cat is",cat);
-    const [filters,setFilters]=useState({});
-    const [sort,setSort]=useState("newest");
+    const location = useLocation();
+    const cat = location.pathname.split("/")[2];
+    console.log("cat is", cat);
+    const [filters, setFilters] = useState({});
+    const [sort, setSort] = useState("newest");
 
 
-    const handleFilters=(e)=>{
-        const value=e.target.value;
+    const handleFilters = (e) => {
+        const value = e.target.value;
 
         setFilters({
             ...filters,
-            [e.target.name]:value,
+            [e.target.name]: value,
         })
     }
     return (
@@ -98,7 +98,7 @@ const ProductList = () => {
                     </Select>
                 </Filter> */}
             </FilterContainer>
-            <Products cat={cat} filters={filters} sort={sort}/>
+            <Products cat={cat} filters={filters} sort={sort} />
             <Newsletter />
             <Footer />
         </Container>

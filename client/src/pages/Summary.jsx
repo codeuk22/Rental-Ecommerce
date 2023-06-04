@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { publicRequest, userRequest } from "../requestMethods";
 import { useNavigate } from "react-router";
 import React from "react";
+import logo from "../../../client/src/Images/logo.png";
 
 const SummaryBox = styled.div`
 flex: 1;
@@ -40,8 +41,6 @@ const KEY = process.env.REACT_APP_STRIPE;
 
 const Summary = ({ totalPrice, productList,user }) => {
 
-    // console.log(totalPrice, "tot7alprofe")
-
     const cart = useSelector(state => state.cart);
     const [stripeToken, setStripeToken] = useState(null);
     const history = useNavigate();
@@ -50,7 +49,8 @@ const Summary = ({ totalPrice, productList,user }) => {
         setStripeToken(token);
     };
 
-    const [productItems, setProductItems] = useState();
+    const id=JSON.parse(localStorage.getItem("user")).username;
+
 
     useEffect(() => {
         const makeRequest = async () => {
@@ -60,13 +60,13 @@ const Summary = ({ totalPrice, productList,user }) => {
                         tokenId: stripeToken.id,
                         amount: (totalPrice * 100) / 81.73,
                     });
+                    
                 if (res) {
                     for (let i = 0; i < productList?.length; i++) {
                         try {
-                            await publicRequest.post("/orders", {
+                            const res=await publicRequest.post("/orders", {
 
-                                // userId: productList[i].userId,
-                                userId:user,
+                                userId:id,
                                 products: [
                                     {
                                         productId: productList[i].productId,
@@ -77,13 +77,16 @@ const Summary = ({ totalPrice, productList,user }) => {
                                 amount: productList[i].pricePerItem*productList[i].quantity,
                                 status: "Success"
                             })
+                            
                         } catch (e) {
-                            console.log("Error while ordering")
+                            console.log("Error while ordering ",e.message)
                         }
 
                     }
+                    const resp=await publicRequest.delete(`/carts/find/${id}`);
 
-                    history("/success");
+                    if(resp) history("/success");
+                    
                 }
             } catch (e) {
                 console.log(e);
@@ -103,23 +106,23 @@ const Summary = ({ totalPrice, productList,user }) => {
             </SummaryItem>
             <SummaryItem>
                 <SummaryItemText>Estimated Shipping</SummaryItemText>
-                <SummaryItemPrice>₹ 150.90</SummaryItemPrice>
+                <SummaryItemPrice>₹ {totalPrice*0.1}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
                 <SummaryItemText>Shipping Discount</SummaryItemText>
-                <SummaryItemPrice>- ₹ 150.90</SummaryItemPrice>
+                <SummaryItemPrice>- ₹ {totalPrice*0.1}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
                 <SummaryItemText >Total</SummaryItemText>
                 <SummaryItemPrice>₹ {totalPrice}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-                name="rks"
-                img="https://avatars.githubusercontent.com/u/1486366>v=4"
+                name="Bharat Mall"
+                image={logo}
                 billingAddress
                 shippingAddress
-                description={`Your total is $ ₹{ totalPrice}`}
-                amount={(totalPrice * 100) / 81.73}
+                description={`Your total is  ₹ ${ totalPrice}`}
+                amount={Math.round((totalPrice*100)/82.40)}
                 token={onToken}
                 stripeKey={KEY}
             >

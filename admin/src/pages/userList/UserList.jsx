@@ -19,8 +19,8 @@ export default function UserList() {
 
   const getUser= async()=>{
     try{
-          // const res=await axios.get("http://localhost:5000/api/users")
-          const res=await axios.get("https://ecomm-api-1vp8.onrender.com/api/users")
+          const res=await axios.get("http://localhost:5000/api/users")
+          // const res=await axios.get("https://ecomm-api-1vp8.onrender.com/api/users")
 
           if(res){
             setData(res.data)
@@ -78,7 +78,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row._id}>
+            <Link to={`/home/user/${params.row._id}`}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
@@ -97,6 +97,7 @@ export default function UserList() {
         rows={data}
         disableSelectionOnClick
         columns={columns}
+        getRowId={row => row._id}
         pageSize={10}
         checkboxSelection
       />

@@ -22,7 +22,7 @@ export default function User() {
   const [address, setAddress] = useState(address);
 
   const location = useLocation();
-  const userId = location.pathname.split("/")[2];
+  const userId = location.pathname.split("/")[3];
   const [user, setUser] = useState([]);
 
   const updateUser = async () => {
@@ -63,7 +63,7 @@ export default function User() {
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
-          <Link to="/newUser">
+          <Link to="/home/newUser">
             <button className="userAddButton">Create</button>
           </Link>
         </div>

@@ -1,14 +1,14 @@
 import axios from "axios";
 
-// const URL='http://localhost:5000/api/';
-const URL='https://ecomm-api-1vp8.onrender.com/api/';
+const URL='http://localhost:5000/api/';
+// const URL='https://ecomm-api-1vp8.onrender.com/api/';
 
 //product api
 
 export const addProductApi= async(data)=>{
     try{
         const d=await axios.post(`${URL}carts`,data);
-         return d
+        return d
     }
     catch(error){
         console.log(error)
@@ -42,7 +42,6 @@ export const getProduct=async(id)=>{
 
 export const getAllOrder= async(id)=>{
     try{
-        console.log("hii",id);
         const result= await axios.get(`${URL}orders/find/${id}`);
          return result.data;
     }

@@ -101,7 +101,7 @@ const Navbar = ({length}) => {
   const [userId,setUserId]=useState();
   const [data, setData] = useState();
 
-  const id=JSON.parse(localStorage.getItem("user")).username;
+  const id=JSON.parse(localStorage.getItem("user"))?.username;
 
 
   useEffect(() => {

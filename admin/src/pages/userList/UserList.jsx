@@ -19,8 +19,8 @@ export default function UserList() {
 
   const getUser= async()=>{
     try{
-          const res=await axios.get("http://localhost:5000/api/users")
-          // const res=await axios.get("https://ecomm-api-1vp8.onrender.com/api/users")
+          // const res=await axios.get("http://localhost:5000/api/users")
+          const res=await axios.get("https://ecomm-api-1vp8.onrender.com/api/users")
 
           if(res){
             setData(res.data)

@@ -2,8 +2,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Announcement from "../components/Announcement";
+import Navbar from "../components/Navbar";
 
-const Suc=styled.div`
+const Suc = styled.div`
 font-size: 20px;
 display: flex;
 justify-content: center;
@@ -13,14 +15,15 @@ width: 100vw;
 height: 100vh;
 `
 
-const Success=()=>{
-    // const location=useLocation();
-
-
-    return(
-        <Suc>
-            Your Order has been successfully Placed. Click here to &nbsp; <Link to="/" style={{ color: 'MediumSeaGreen', textDecoration: 'inherit'}}>Continue Shopping</Link>
-        </Suc>
+const Success = () => {
+    return (
+        <>
+            <Navbar />
+            <Announcement />
+            <Suc>
+                Your Order has been successfully Placed. Click here to &nbsp; <Link to="/" style={{ color: 'MediumSeaGreen', textDecoration: 'inherit' }}>Continue Shopping</Link>
+            </Suc>
+        </>
     )
 }
 

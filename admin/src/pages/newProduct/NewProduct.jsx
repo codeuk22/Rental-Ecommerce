@@ -82,17 +82,13 @@ function NewProduct() {
 
       if (res) {
         alert("Product has been Added");
+        window.location.reload();
       }
 
 
     } catch (e) {
       console.log(e);
     }
-
-
-
-
-
 
   }
 

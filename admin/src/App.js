@@ -28,13 +28,13 @@ function App() {
             <Sidebar />
             <Routes>
               <Route path="/home" element={<Home />} />
-              <Route path="/users" element={<UserList />} />
-              <Route path="/user/:userId" element={<User />} />
-              <Route path="/newUser" element={<NewUser />} />
-              <Route path="/products" element={<ProductList />} />
-              <Route path="/product/:productsId" element={<Product />} />
-              <Route path="/newproduct" element={<NewProduct />} />
-              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/home/users" element={<UserList />} />
+              <Route path="/home/user/:userId" element={<User />} />
+              <Route path="/home/newUser" element={<NewUser />} />
+              <Route path="/home/products" element={<ProductList />} />
+              <Route path="/home/product/:productsId" element={<Product />} />
+              <Route path="/home/newproduct" element={<NewProduct />} />
+              <Route path="/home/transactions" element={<Transactions />} />
             </Routes>
           </div>
         </BrowserRouter>) : (

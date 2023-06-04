@@ -9,6 +9,7 @@ import { ExitToAppOutlined } from "@material-ui/icons"
 import { getUserProducts } from '../service/productApi';
 import { ShoppingBasket } from '@material-ui/icons';
 import logo from "../Images/logo.png";
+import { userRequest } from '../requestMethods';
 
 
 const Container = styled.div`
@@ -90,30 +91,42 @@ font-weight: 600;
 cursor: pointer;
 `
 
-const Navbar = ({ length }) => {
+const Navbar = ({length}) => {
 
   const q = useSelector(state => state.cart.quantity);
   const navigate = useNavigate();
-  useEffect(() => {
-    getProductItem();
-  }, []);
 
   const [len, setLength] = useState();
-  const [quantity, setQuantity] = useState()
+  const [quantity, setQuantity] = useState();
+  const [userId,setUserId]=useState();
+  const [data, setData] = useState();
 
-  const getProductItem = async () => {
+  const id=JSON.parse(localStorage.getItem("user"))?.username;
 
-    const data = await getUserProducts(JSON.parse(localStorage.getItem("user"))._id);
-    setLength(data?.length);
-    setQuantity(data?.length);
-  }
+
+  useEffect(() => {
+    const getProductData = async () => {
+      const data = await getUserProducts(id);
+      setLength(data?.length);
+      setQuantity(data?.length);
+    };
+    getProductData();
+  }, []);
+
+
+  // const getProductItem = async () => {
+  //   console.log("cc",userId)
+
+  //   const data = await getUserProducts(userId);
+  //   console.log("pup",data)
+  //   setLength(data?.length);
+  //   setQuantity(data?.length);
+  // }
 
   const handleOrder = () => {
     navigate("/orders");
   }
 
-
-  const [data, setData] = useState();
 
   useEffect(() => {
     getSetuser();

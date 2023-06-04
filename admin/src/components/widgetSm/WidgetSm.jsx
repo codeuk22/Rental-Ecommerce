@@ -12,7 +12,7 @@ function WidgetSm() {
         const getUsers = async () => {
             try {
                 // const res = await userRequest.get("users/?new=true")
-                const res = await userRequest.get("users/");
+                const res = await userRequest.get("/users");
                 if (res) {
                     const reversedData = res.data.reverse();
                     setUsers(reversedData);

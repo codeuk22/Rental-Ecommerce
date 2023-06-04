@@ -2,6 +2,7 @@ import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } fro
 import React from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive'
+import logo from "../Images/logo.png";
 
 const Container = styled.div`
 display: flex;
@@ -73,9 +74,9 @@ const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo>Pip</Logo>
+                <Logo><img src={logo} alt="" style={{ width: "70px", height: "70px" }}/></Logo>
                 <Desc>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eum delectus, ratione, quo, omnis ea distinctio nesciunt dignissimos rem autem adipisci minus pariatur illum laborum dolorum cum maxime vitae
+                We see our customers as invited guests to a party, and we are the hosts. It's our job every day to make every important aspect of the customer experience a little bit better
                 </Desc>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
@@ -93,7 +94,7 @@ const Footer = () => {
                 </SocialContainer>
             </Left>
             <Center>
-                <Title>Useful Links</Title>
+                {/* <Title>Useful Links</Title>
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>Cart</ListItem>
@@ -104,18 +105,18 @@ const Footer = () => {
                     <ListItem>Order Tracking</ListItem>
                     <ListItem>WishList</ListItem>
                     <ListItem>Terms</ListItem>
-                </List>
+                </List> */}
             </Center>
             <Right>
             <Title>Contact</Title>
             <ContactItem>
-               <Room style={{marginRight:"10px"}}/> 404 Juhi Colony , Kanpur UP
+               <Room style={{marginRight:"10px"}}/> Sitapur Jwalapur Haridwar
             </ContactItem>
             <ContactItem>
-                <Phone style={{marginRight:"10px"}}/>+1 234 87 69
+                <Phone style={{marginRight:"10px"}}/>+91 9520327415
             </ContactItem>
             <ContactItem>
-              <MailOutline style={{marginRight:"10px"}}/>  contact@betting.com
+              <MailOutline style={{marginRight:"10px"}}/>  rkrisky.singhania123@gmail.com
             </ContactItem>
             <Payment src="http://i.ibb.co/Qfvn4z6/payment.png"/>
             </Right>

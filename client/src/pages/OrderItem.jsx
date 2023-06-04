@@ -91,7 +91,6 @@ function OrderItem({ product }) {
 
     return (
         <>
-
             <div style={{ display: "flex" }}>
                 <ProductDetail >
                     <Image src={data?.img} />

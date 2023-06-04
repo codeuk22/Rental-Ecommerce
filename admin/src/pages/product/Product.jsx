@@ -10,16 +10,12 @@ import { publicRequest, userRequest } from '../../requestMethods';
 function Product() {
 
     const location = useLocation();
-    const productId = location.pathname.split("/home")[2];
+    const productId = location.pathname.split("/")[3];
     const [pStats, setPStats] = useState([]);
 
     const pro = useSelector((state) => state.product.products.find((product) => product._id === productId))
-    
-    const [product,setProduct]=useState(pro)
 
-    
-    
-   
+    const [product, setProduct] = useState(pro);
 
     const [pname, setPname] = useState(pname);
     const [price, setPrice] = useState(price);
@@ -28,15 +24,14 @@ function Product() {
     const [stock, setStock] = useState(true);
     const [cat, setCat] = useState(cat);
 
-
-    useEffect(()=>{
+    useEffect(() => {
         let sString = '';
         product.size.map((item) => {
             sString += (item) + ','
         });
         sString = sString.slice(0, -1);
         setSize(sString);
-    },[product])
+    }, [product])
 
     const updateProduct = async (e) => {
         e.preventDefault();
@@ -80,14 +75,6 @@ function Product() {
         getProducts();
     }, [])
 
-
-    // let sizeString = '';
-    // product.map((item) => {
-    //     sizeString += (item) + ','
-    // });
-    // sizeString = sizeString.slice(0, -1);
-
-
     const MONTHS = useMemo(
         () => [
             "Jan",
@@ -99,49 +86,67 @@ function Product() {
             "Jul",
             "Aug",
             "Sep",
-            "OCt",
+            "Oct",
             "Nov",
             "Dec",
         ],
         []
     )
-
-    
-
-
     useEffect(() => {
-        setPStats([{name:MONTHS[3],"Sales":500}]);
-    //     const getStats = async () => {
-    //         console.log("lolaa",pStats)
-    //         try {
-    //             // const res = await userRequest.get("orders/income?pid=" + productId)
-    //             const res=await userRequest.get(`orders/income/${productId}`);
-    //             const list = res.data.sort((a, b) => {
-    //                 return a._id - b._id
-    //             })
-    //             list.map((item) =>
-    //                 setPStats((prev) => [
-    //                     ...prev, { name: MONTHS[item._id - 1], Sales: item.total },
-    //                 ])
-    //             )
-    //         } catch (e) {
-    //             console.log(e)
-    //         }
-    //     }
+
+        //     const getStats = async () => {
+        //         console.log("lolaa",pStats)
+        //         try {
+        //             // const res = await userRequest.get("orders/income?pid=" + productId)
+        //             const res=await userRequest.get(`orders/income/${productId}`);
+        //             const list = res.data.sort((a, b) => {
+        //                 return a._id - b._id
+        //             })
+        //             list.map((item) =>
+        //                 setPStats((prev) => [
+        //                     ...prev, { name: MONTHS[item._id - 1], Sales: item.total },
+        //                 ])
+        //             )
+        //         } catch (e) {
+        //             console.log(e)
+        //         }
+        //     }
         // getStats();
+        const getStats = async () => {
+            try {
+                const res = await publicRequest.get(`/orders/sales/${productId}`);
+                const stats = res.data.reduce((acc, order) => {
+                    const monthName = MONTHS[new Date(order.createdAt).getMonth()];
+                    const quantity = order.products[1].quantity;
+                    if (!acc[monthName]) {
+                      acc[monthName] = { name: monthName, Sales: quantity };
+                    } else {
+                      acc[monthName].Sales += quantity;
+                    }
+                    return acc;
+                  }, {});
+                  const formattedStats = Object.values(stats);
+                  setPStats(formattedStats);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        getStats();
+
     }, [productId, MONTHS])
 
     return (
         <div className="product">
             <div className="productTitleContainer">
                 <h1 className="productTitle">Product</h1>
-                <Link to="/newproduct">
+                <Link to="/home/newproduct">
                     <button className="productAddButton">Create</button>
                 </Link>
             </div>
             <div className="productTop">
                 <div className="productTopLeft">
-                
+
                     {/* <Chart data={pStats} dataKey="Sales" grid title="Sales Performance" /> */}
                     <Chart data={pStats} title="Sales Performance" grid dataKey="Sales" />
                 </div>
@@ -176,7 +181,7 @@ function Product() {
                         <label>Product Price</label>
                         <input type='text' placeholder={product.price} onChange={(e) => { setPrice(e.target.value) }} />
                         <label>In Stock</label>
-                        <select  name="inStock" id="idStock" onChange={(e) => { setStock(e.target.value) }}>
+                        <select name="inStock" id="idStock" onChange={(e) => { setStock(e.target.value) }}>
                             <option value={true} selected>Yes</option>
                             <option value={false}>No</option>
                         </select>

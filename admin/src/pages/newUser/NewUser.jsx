@@ -11,6 +11,7 @@ function NewUser() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [isAdmin,setisAdmin]=useState(true);
 
   const createUser = async () => {
     if (username === "" || fname === "" || lname === "" || password === "" || phone === "" || email === "" || address === "") {
@@ -24,7 +25,8 @@ function NewUser() {
           password,
           phone,
           email,
-          address
+          address,
+          isAdmin
         })
         if (res){
           alert("User has been Created");
@@ -68,13 +70,13 @@ function NewUser() {
           <label>Address</label>
           <input type="text" placeholder="Haridwar Uttarakhand" onChange={(e) => { setAddress(e.target.value) }} />
         </div>
-        {/* <div className="newUserItem">
-          <label>Active</label>
-          <select className="newUserSelect" name="active" id="active">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+        <div className="newUserItem">
+          <label>isAdmin</label>
+          <select defaultValue={true} className="newUserSelect" name="isAdmin" id="active" onChange={(e) => { setisAdmin(e.target.value) }}>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
-        </div> */}
+        </div>
         {/* <div className="newUserItem">
           <label>Gender</label>
           <div className="newUserGender">

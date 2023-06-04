@@ -95,8 +95,8 @@ function Orders() {
     const [list, setList] = useState();
 
     const getOrderList = async () => {
-        const id=JSON.parse(localStorage.getItem("user"))._id;
-        const user=await userRequest.get(`/users/find/${id}`)
+        const id = JSON.parse(localStorage.getItem("user"))._id;
+        const user = await userRequest.get(`/users/find/${id}`)
         const data = await getAllOrder(user.data.username);
         if (data) {
             setList(data);
@@ -111,7 +111,7 @@ function Orders() {
                 <Det>My Orders</Det>
                 <Link to="/"><TopButton>Continue Shopping</TopButton></Link>
             </Dm>
-            
+
             {
                 list?.map((item) => (
                     <OrderItem product={item} />

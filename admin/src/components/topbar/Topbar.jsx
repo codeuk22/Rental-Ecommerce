@@ -68,7 +68,7 @@ function Topbar() {
                     </Link>
                     </>:
                     <>
-                    <img src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="topAvatar" />
+                    {/* <img src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="topAvatar" /> */}
                     <Button onClick={handleClick}> <ExitToAppOutlined /> </Button>
                     </>
                     }

@@ -10,6 +10,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import "./user.css";
 import { publicRequest } from "../../requestMethods";
+import { Avatar } from "@material-ui/core";
 
 export default function User() {
 
@@ -20,6 +21,7 @@ export default function User() {
   const [email, setEmail] = useState(email);
   const [phone, setPhone] = useState(phone);
   const [address, setAddress] = useState(address);
+  const [isAdmin,setIsAdmin] =useState(true);
 
   const location = useLocation();
   const userId = location.pathname.split("/")[3];
@@ -34,7 +36,8 @@ export default function User() {
         email,
         phone,
         address,
-        username
+        username,
+        isAdmin
       });
 
       if (res) alert("User Data has been Updated");
@@ -70,11 +73,12 @@ export default function User() {
         <div className="userContainer">
           <div className="userShow">
             <div className="userShowTop">
-              <img
+              <Avatar />
+              {/* <img
                 src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                 alt=""
                 className="userShowImg"
-              />
+              /> */}
               <div className="userShowTopTitle">
                 <span className="userShowUsername">{`${user.fname} ${user.lname}`}</span>
                 {/* <span className="userShowUserTitle">Software Engineer</span> */}
@@ -163,14 +167,21 @@ export default function User() {
                     onChange={(e) => { setAddress(e.target.value) }}
                   />
                 </div>
+                <div className="userAdminUpdate">
+                <label>isAdmin</label><br/>
+                <select defaultValue={true} className="newUserSelect" name="isAdmin" id="active" onChange={(e) => { setIsAdmin(e.target.value) }}>
+                  <option value={true}>Yes</option>
+                  <option value={false}>No</option>
+                </select>
+                </div>
               </div>
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
-                  <img
+                  {/* <img
                     className="userUpdateImg"
                     src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                     alt=""
-                  />
+                  /> */}
                   <label htmlFor="file">
                     {/* <Publish className="userUpdateIcon" /> */}
                   </label>

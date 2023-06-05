@@ -95,8 +95,7 @@ const Summary = ({ totalPrice, productList,user }) => {
         };
         stripeToken && makeRequest();
     }, [stripeToken, totalPrice, history]);
-
-
+    
     return (
         <SummaryBox>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -122,14 +121,13 @@ const Summary = ({ totalPrice, productList,user }) => {
                 billingAddress
                 shippingAddress
                 description={`Your total is  ₹ ${ totalPrice}`}
-                amount={Math.round((totalPrice*100)/82.40)}
+                amount={(totalPrice*100)/82.56}
                 token={onToken}
                 stripeKey={KEY}
             >
                 <Button>CHECKOUT NOW</Button>
             </StripeCheckout>
         </SummaryBox>
-
     )
 }
 

@@ -36,9 +36,9 @@ app.use("/api/checkout", stripeRoute);
 
 // app.all('*', (req, _) => console.log(req.path))
 
-// app.get("/" , (req, res)=>{
-//     res.send("Ecomm Server is live !!!!!!!!!")
-// })
+app.get("/" , (req, res)=>{
+    res.send("Rohit's Ecomm Server is live !!!!!!!!!")
+})
 
 
 app.listen(port, () => {

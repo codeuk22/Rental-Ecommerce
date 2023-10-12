@@ -12,6 +12,8 @@
 /build
 
 # misc
+dotenv
+
 .DS_Store
 .env
 .env.local

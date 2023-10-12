@@ -54,8 +54,8 @@ align-items: center;
 
 const Products = ({cat,filters,sort}) => {
   
-  const [products,setProducts]=useState(popularProducts);
-  const [filteredProducts,setFilteredProducts]=useState([]);
+  const [products,setProducts]=useState([]);
+  // const [filteredProducts,setFilteredProducts]=useState([]);
     const [searchText,setSearchText]=useState("")
 
   useEffect(()=>{
@@ -81,27 +81,27 @@ const Products = ({cat,filters,sort}) => {
     }
   };
 
-  useEffect(()=>{
-    cat && setFilteredProducts(
-      products.filter(item=>Object.entries(filters).every(([key,value])=>
-      item[key].includes(value)
-      ))
-    )
-  },[products,cat,filters]);
+  // useEffect(()=>{
+  //   cat && setFilteredProducts(
+  //     products.filter(item=>Object.entries(filters).every(([key,value])=>
+  //     item[key].includes(value)
+  //     ))
+  //   )
+  // },[products,cat,filters]);
 
 
-  useEffect(()=>{
-    if((sort==="newest")){
-      setFilteredProducts((prev)=>
-      [...prev].sort((a,b)=>a.createdAt-b.createdAt));
-    }else if((sort==="asc")){
-      setFilteredProducts((prev)=>
-      [...prev].sort((a,b)=>a.price-b.price));
-    }else{
-      setFilteredProducts((prev)=>
-      [...prev].sort((a,b)=>b.price-a.price));
-    }
-  },[sort]);
+  // useEffect(()=>{
+  //   if((sort==="newest")){
+  //     setFilteredProducts((prev)=>
+  //     [...prev].sort((a,b)=>a.createdAt-b.createdAt));
+  //   }else if((sort==="asc")){
+  //     setFilteredProducts((prev)=>
+  //     [...prev].sort((a,b)=>a.price-b.price));
+  //   }else{
+  //     setFilteredProducts((prev)=>
+  //     [...prev].sort((a,b)=>b.price-a.price));
+  //   }
+  // },[sort]);
 
 
   
@@ -109,7 +109,7 @@ const Products = ({cat,filters,sort}) => {
   const handleSearch=()=>{
     let arr=[];
     for(let i=0;i<products?.length;i++){
-      if(products[i].title==searchText){
+      if(products[i].title==searchText && products[i]?.inStock){
         arr.push(products[i]);
       }
     }
@@ -134,7 +134,10 @@ const Products = ({cat,filters,sort}) => {
 
     <Container>
 
-      {products.slice(0,20).map((item)=> <Product item={item} key={item.id} cat={cat}/> )}
+      {products.slice(0,20).map((item)=>{
+        if(item.inStock) {
+          return <Product item={item} key={item.id} cat={cat}/> 
+      }})}
     </Container>
     
 </>

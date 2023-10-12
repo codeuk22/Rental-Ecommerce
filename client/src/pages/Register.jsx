@@ -17,9 +17,14 @@ align-items: center;
 justify-content: center;
 `
 const Wrapper = styled.div`
+background: rgba( 255, 255, 255, 0.45 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4.5px );
+-webkit-backdrop-filter: blur( 4.5px );
 width: 40%;
 padding: 20px;
-background-color: white;
+border-radius: 20px;
+/* background-color: white; */
 ${mobile({ width: "75%" })}
 `
 const Title = styled.h1`

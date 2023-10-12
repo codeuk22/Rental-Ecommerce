@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import {userRequest } from "../../requestMethods";
+import { Avatar } from "@material-ui/core";
 
 export default function UserList() {
 

@@ -136,7 +136,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-      alert("An error occurred while trying to log in");
+      alert("Invalid User");
     }
   };
 
@@ -159,7 +159,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleClick}>LOGIN</Button>
-          <Lin>DO NOT REMEMBER PASSWORD ?</Lin>
+          {/* <Lin>DO NOT REMEMBER PASSWORD ?</Lin> */}
         </Form>
       </Wrapper>
     </Container>

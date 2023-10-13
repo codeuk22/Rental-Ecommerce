@@ -23,7 +23,7 @@ function Home() {
       "Jul",
       "Aug",
       "Sep",
-      "OCt",
+      "Oct",
       "Nov",
       "Dec",
     ],
